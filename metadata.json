@@ -1,0 +1,6 @@
+{
+  "name": "Sahiroomie",
+  "description": "Roommate, PG & Flat Finder across India with AI Gen-Z Vibe Match, 1 km privacy circles, and bilingual English/Hindi support.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

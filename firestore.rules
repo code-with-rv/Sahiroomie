@@ -1,0 +1,310 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net: default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() >= 2 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isVerifiedUser() && (
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid)) ||
+        request.auth.token.email == 'ravikumar2012002@gmail.com'
+      );
+    }
+
+    function isValidUserPublicProfile(data, userId) {
+      return data.keys().hasAll(['userId', 'displayName', 'city', 'state', 'onboardingCompleted', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly([
+          'userId', 'displayName', 'photoUrl', 'occupation', 'gender',
+          'city', 'state', 'bio', 'sleepVibe', 'socialBattery',
+          'cleanlinessVibe', 'vibeTags', 'roomRequirement', 'onboardingCompleted',
+          'createdAt', 'updatedAt'
+        ])
+        && data.userId == userId
+        && data.displayName is string && data.displayName.size() >= 2 && data.displayName.size() <= 80
+        && data.city is string && data.city.size() >= 2 && data.city.size() <= 60
+        && data.state is string && data.state.size() >= 2 && data.state.size() <= 60
+        && data.onboardingCompleted is bool
+        && (!('photoUrl' in data) || (data.photoUrl is string && data.photoUrl.size() <= 200000))
+        && (!('occupation' in data) || (data.occupation is string && data.occupation.size() <= 80))
+        && (!('gender' in data) || data.gender in ['Male', 'Female', 'Other', 'Any'])
+        && (!('bio' in data) || (data.bio is string && data.bio.size() <= 400))
+        && (!('sleepVibe' in data) || data.sleepVibe in ['Early Bird', 'Night Owl', 'Flexible'])
+        && (!('socialBattery' in data) || data.socialBattery in ['Introvert', 'Ambivert', 'Extrovert'])
+        && (!('cleanlinessVibe' in data) || data.cleanlinessVibe in ['Pinterest Clean', 'Organized Chaos', 'Chill'])
+        && (!('vibeTags' in data) || (data.vibeTags is list && data.vibeTags.size() <= 8 && (data.vibeTags.size() == 0 || data.vibeTags[0] is string)))
+        && (!('roomRequirement' in data) || data.roomRequirement is map)
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidUserPrivateInfo(data, userId) {
+      return data.keys().hasAll(['userId', 'age', 'phoneVerified', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly([
+          'userId', 'email', 'phone', 'age', 'phoneVerified', 'emailVerified',
+          'idVerified', 'kycBadgeToken', 'privacyExactArea', 'privacyShowAge',
+          'savedListingIds', 'createdAt', 'updatedAt'
+        ])
+        && data.userId == userId
+        && data.age is number && data.age >= 18 && data.age <= 99
+        && data.phoneVerified is bool
+        && (!('email' in data) || (data.email is string && data.email.size() <= 120))
+        && (!('phone' in data) || (data.phone is string && data.phone.size() <= 24))
+        && (!('emailVerified' in data) || data.emailVerified is bool)
+        && (!('idVerified' in data) || data.idVerified is bool)
+        && (!('kycBadgeToken' in data) || (data.kycBadgeToken is string && data.kycBadgeToken.size() <= 40))
+        && (!('privacyExactArea' in data) || data.privacyExactArea is bool)
+        && (!('privacyShowAge' in data) || data.privacyShowAge is bool)
+        && (!('savedListingIds' in data) || (data.savedListingIds is list && data.savedListingIds.size() <= 100 && (data.savedListingIds.size() == 0 || data.savedListingIds[0] is string)))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidListing(data) {
+      return data.keys().hasAll(['ownerId', 'title', 'type', 'city', 'area', 'rent', 'gender', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly([
+          'ownerId', 'title', 'type', 'city', 'state', 'area', 'landmark',
+          'rent', 'deposit', 'sizeSqFt', 'gender', 'urgentDays', 'hygieneRating',
+          'hygieneVerified', 'furnishing', 'attachedBath', 'balcony', 'parking',
+          'moveInDate', 'lat', 'lng', 'pinX', 'pinY', 'description', 'houseRules',
+          'photos', 'status', 'createdAt', 'updatedAt'
+        ])
+        && isValidId(data.ownerId)
+        && data.title is string && data.title.size() >= 4 && data.title.size() <= 140
+        && data.type in ['Room in a flat', 'PG', 'Flat', 'Roommate']
+        && data.city is string && data.city.size() >= 2 && data.city.size() <= 60
+        && data.area is string && data.area.size() >= 2 && data.area.size() <= 80
+        && data.rent is number && data.rent >= 1000 && data.rent <= 250000
+        && data.gender in ['Any', 'Male', 'Female', 'Other']
+        && data.status in ['active', 'filled', 'removed']
+        && (!('state' in data) || (data.state is string && data.state.size() <= 60))
+        && (!('landmark' in data) || (data.landmark is string && data.landmark.size() <= 120))
+        && (!('deposit' in data) || (data.deposit is number && data.deposit >= 0 && data.deposit <= 1000000))
+        && (!('sizeSqFt' in data) || (data.sizeSqFt is number && data.sizeSqFt >= 40 && data.sizeSqFt <= 10000))
+        && (!('urgentDays' in data) || (data.urgentDays is number && data.urgentDays >= 1 && data.urgentDays <= 90))
+        && (!('hygieneRating' in data) || (data.hygieneRating is number && data.hygieneRating >= 1 && data.hygieneRating <= 5))
+        && (!('hygieneVerified' in data) || data.hygieneVerified is bool)
+        && (!('furnishing' in data) || (data.furnishing is string && data.furnishing.size() <= 40))
+        && (!('attachedBath' in data) || data.attachedBath is bool)
+        && (!('balcony' in data) || data.balcony is bool)
+        && (!('parking' in data) || (data.parking is string && data.parking.size() <= 40))
+        && (!('moveInDate' in data) || (data.moveInDate is string && data.moveInDate.size() <= 30))
+        && (!('lat' in data) || data.lat is number)
+        && (!('lng' in data) || data.lng is number)
+        && (!('pinX' in data) || data.pinX is number)
+        && (!('pinY' in data) || data.pinY is number)
+        && (!('description' in data) || (data.description is string && data.description.size() <= 1200))
+        && (!('houseRules' in data) || (data.houseRules is string && data.houseRules.size() <= 600))
+        && (!('photos' in data) || (data.photos is list && data.photos.size() <= 10 && (data.photos.size() == 0 || data.photos[0] is string)))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidChatThread(data) {
+      return data.keys().hasAll(['listingId', 'initiatorId', 'hostId', 'participantIds', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly([
+          'listingId', 'initiatorId', 'hostId', 'participantIds',
+          'status', 'lastMessageText', 'createdAt', 'updatedAt'
+        ])
+        && isValidId(data.listingId)
+        && isValidId(data.initiatorId)
+        && isValidId(data.hostId)
+        && data.participantIds is list
+        && data.participantIds.size() == 2
+        && data.participantIds[0] is string
+        && data.participantIds[1] is string
+        && data.initiatorId in data.participantIds
+        && data.hostId in data.participantIds
+        && data.status in ['open', 'blocked']
+        && (!('lastMessageText' in data) || (data.lastMessageText is string && data.lastMessageText.size() <= 1000))
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    function isValidChatMessage(data) {
+      return data.keys().hasAll(['senderId', 'text', 'createdAt'])
+        && data.keys().hasOnly(['senderId', 'text', 'createdAt'])
+        && isValidId(data.senderId)
+        && data.text is string && data.text.size() >= 1 && data.text.size() <= 1000
+        && data.createdAt is timestamp;
+    }
+
+    function isValidSafetyReport(data) {
+      return data.keys().hasAll(['reporterId', 'targetType', 'targetName', 'reason', 'status', 'createdAt', 'updatedAt'])
+        && data.keys().hasOnly(['reporterId', 'targetType', 'targetName', 'reason', 'status', 'createdAt', 'updatedAt'])
+        && isValidId(data.reporterId)
+        && data.targetType is string && data.targetType.size() >= 2 && data.targetType.size() <= 40
+        && data.targetName is string && data.targetName.size() >= 2 && data.targetName.size() <= 140
+        && data.reason is string && data.reason.size() >= 3 && data.reason.size() <= 200
+        && data.status in ['Pending', 'Approved / Verified', 'Banned & Removed']
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    // Users: Split Collection (public profile vs owner-only private PII)
+    match /users/{userId}/public/profile {
+      allow get: if isValidId(userId) && isSignedIn();
+      allow create: if isValidId(userId)
+        && isVerifiedUser()
+        && isOwner(userId)
+        && isValidUserPublicProfile(incoming(), userId)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(userId)
+        && isVerifiedUser()
+        && isOwner(userId)
+        && isValidUserPublicProfile(incoming(), userId)
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'displayName', 'photoUrl', 'occupation', 'gender',
+          'city', 'state', 'bio', 'sleepVibe', 'socialBattery',
+          'cleanlinessVibe', 'vibeTags', 'roomRequirement',
+          'onboardingCompleted', 'updatedAt'
+        ]);
+      allow delete: if isValidId(userId) && isVerifiedUser() && isOwner(userId);
+    }
+
+    match /users/{userId}/private/info {
+      allow get: if isValidId(userId) && (isOwner(userId) || isAdmin());
+      allow create: if isValidId(userId)
+        && isVerifiedUser()
+        && isOwner(userId)
+        && isValidUserPrivateInfo(incoming(), userId)
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(userId)
+        && isVerifiedUser()
+        && isOwner(userId)
+        && isValidUserPrivateInfo(incoming(), userId)
+        && incoming().userId == existing().userId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly([
+          'email', 'phone', 'age', 'phoneVerified', 'emailVerified',
+          'idVerified', 'kycBadgeToken', 'privacyExactArea',
+          'privacyShowAge', 'savedListingIds', 'updatedAt'
+        ]);
+      allow delete: if isValidId(userId) && isVerifiedUser() && isOwner(userId);
+    }
+
+    // Listings: Publicly discoverable active stays; owner-controlled writes
+    match /listings/{listingId} {
+      allow get: if isValidId(listingId) && (existing().status == 'active' || isOwner(existing().ownerId) || isAdmin());
+      allow list: if resource.data.status == 'active' || (isSignedIn() && resource.data.ownerId == request.auth.uid);
+      allow create: if isValidId(listingId)
+        && isVerifiedUser()
+        && isValidListing(incoming())
+        && incoming().ownerId == request.auth.uid
+        && incoming().status == 'active'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(listingId)
+        && isVerifiedUser()
+        && isValidListing(incoming())
+        && (isAdmin() || (
+          isOwner(existing().ownerId)
+          && existing().status != 'removed'
+          && incoming().ownerId == existing().ownerId
+          && incoming().createdAt == existing().createdAt
+          && incoming().updatedAt == request.time
+          && incoming().diff(existing()).affectedKeys().hasOnly([
+            'title', 'rent', 'deposit', 'urgentDays', 'description',
+            'houseRules', 'photos', 'status', 'updatedAt'
+          ])
+        ));
+      allow delete: if isValidId(listingId) && isVerifiedUser() && (isOwner(existing().ownerId) || isAdmin());
+    }
+
+    // Chats: Strict participant isolation on both get and list
+    match /chats/{chatId} {
+      allow get: if isValidId(chatId) && isSignedIn() && request.auth.uid in existing().participantIds;
+      allow list: if isSignedIn() && request.auth.uid in resource.data.participantIds;
+      allow create: if isValidId(chatId)
+        && isVerifiedUser()
+        && isValidChatThread(incoming())
+        && incoming().initiatorId == request.auth.uid
+        && request.auth.uid in incoming().participantIds
+        && incoming().status == 'open'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(chatId)
+        && isVerifiedUser()
+        && isValidChatThread(incoming())
+        && request.auth.uid in existing().participantIds
+        && incoming().listingId == existing().listingId
+        && incoming().initiatorId == existing().initiatorId
+        && incoming().hostId == existing().hostId
+        && incoming().participantIds == existing().participantIds
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'lastMessageText', 'updatedAt']);
+
+      match /messages/{messageId} {
+        allow get: if isValidId(chatId) && isValidId(messageId) && isSignedIn()
+          && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participantIds;
+        allow list: if isValidId(chatId) && isSignedIn()
+          && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participantIds;
+        allow create: if isValidId(chatId) && isValidId(messageId)
+          && isVerifiedUser()
+          && isValidChatMessage(incoming())
+          && incoming().senderId == request.auth.uid
+          && incoming().createdAt == request.time
+          && request.auth.uid in get(/databases/$(database)/documents/chats/$(chatId)).data.participantIds
+          && get(/databases/$(database)/documents/chats/$(chatId)).data.status == 'open';
+      }
+    }
+
+    // Safety Reports: Reporter creates Pending; Admins review
+    match /reports/{reportId} {
+      allow get: if isValidId(reportId) && (isOwner(existing().reporterId) || isAdmin());
+      allow list: if isSignedIn() && (resource.data.reporterId == request.auth.uid || isAdmin());
+      allow create: if isValidId(reportId)
+        && isVerifiedUser()
+        && isValidSafetyReport(incoming())
+        && incoming().reporterId == request.auth.uid
+        && incoming().status == 'Pending'
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+      allow update: if isValidId(reportId)
+        && isAdmin()
+        && isValidSafetyReport(incoming())
+        && existing().status == 'Pending'
+        && incoming().reporterId == existing().reporterId
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && incoming().diff(existing()).affectedKeys().hasOnly(['status', 'updatedAt']);
+    }
+
+    // Admins registry: read-only from client SDK
+    match /admins/{adminId} {
+      allow get: if isValidId(adminId) && isOwner(adminId);
+    }
+  }
+}

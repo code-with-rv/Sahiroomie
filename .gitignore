@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+coverage/
+.vercel/
+.playwright-cli/
+test-results/
+playwright-report/
+.DS_Store
+*.log
+.env*
+!.env.example
+firebase-applet-config.json
