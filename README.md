@@ -1,128 +1,349 @@
-# Sahiroomie
-
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=0F172A)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-7-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Leaflet](https://img.shields.io/badge/Leaflet-1.9-199900?style=flat-square&logo=leaflet&logoColor=white)](https://leafletjs.com/)
-[![Firebase](https://img.shields.io/badge/Firebase-Firestore_%26_Auth-DD2C00?style=flat-square&logo=firebase&logoColor=white)](https://firebase.google.com/)
-[![Express](https://img.shields.io/badge/Express-4-0F172A?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
-[![Tests](https://img.shields.io/badge/Tests-19_passing-059669?style=flat-square&logo=checkmarx&logoColor=white)](#checks--unit-tests)
-[![License: MIT](https://img.shields.io/badge/License-MIT-4F46E5?style=flat-square)](LICENSE)
-
-<!-- Once pushed to GitHub, uncomment and replace <owner>/<repo> to show a live GitHub Actions CI badge:
-[![CI](https://github.com/<owner>/<repo>/actions/workflows/ci.yml/badge.svg)](https://github.com/<owner>/<repo>/actions/workflows/ci.yml)
--->
-
-**Verified Roommate, PG & Flat Finder for India** — built with React, TypeScript, Vite, Express, Tailwind CSS, Leaflet, and Firebase (Firestore & Auth).
-
-![Sahiroomie Desktop Street Map & Live Listings Preview](docs/screenshots/desktop-street-map.png)
-
-## Preview Gallery
-
-| All India Live City Clusters | Satellite Map View | Mobile Experience |
-| :---: | :---: | :---: |
-| ![All India Live Map](docs/screenshots/desktop-all-india-map.png) | ![Satellite View](docs/screenshots/desktop-satellite-map.png) | ![Mobile Home View](docs/screenshots/mobile-home.png) |
-
 <div align="center">
 
-<!-- Replace this SVG/URL with your custom logo in public/logo.svg or public/logo.png -->
-<img src="https://raw.githubusercontent.com/code-with-rv/Sahiroomie/main/public/logo.svg" alt="Sahiroomie Logo" width="120" height="120" />
+<img src="public/logo.svg" alt="Sahiroomie logo" width="96" height="96" />
 
 # Sahiroomie 🏠✨
 
-**Verified Roommate, PG & Flat Finder for India — Zero Brokerage, 100% Vibe-Matched.**
+### Verified Roommate, PG & Flat Finder for India
+**Zero brokerage · AI vibe matching · 1 km privacy-first maps**
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-sahiroomie.vercel.app-10b981?style=for-the-badge&logo=vercel&logoColor=white)](https://sahiroomie.vercel.app)
-[![TypeScript](https://img.shields.io/badge/TypeScript-98.3%25-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![Firebase](https://img.shields.io/badge/Firebase-Firestore_%26_Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Styled-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-sahiroomie.vercel.app-10b981?style=for-the-badge&logo=vercel&logoColor=white)](https://sahiroomie.vercel.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
+[![Tests](https://img.shields.io/badge/Tests-19%20passing-059669?style=for-the-badge&logo=checkmarx&logoColor=white)](#-testing)
 
-[Explore Live App](https://sahiroomie.vercel.app) • [Report Bug](https://github.com/code-with-rv/Sahiroomie/issues) • [Request Feature](https://github.com/code-with-rv/Sahiroomie/issues)
+[![React](https://img.shields.io/badge/React_19-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite_8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev/)
+[![Tailwind](https://img.shields.io/badge/Tailwind_4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![Express](https://img.shields.io/badge/Express_4-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com/)
+
+[**🚀 Try the app**](https://sahiroomie.vercel.app) · [**🐞 Report a bug**](https://github.com/code-with-rv/Sahiroomie/issues) · [**💡 Request a feature**](https://github.com/code-with-rv/Sahiroomie/issues)
 
 </div>
 
 ---
 
-## 📖 Overview
-
-**Sahiroomie** reimagines shared living across India by eliminating broker fees and guesswork. Combining **AI-powered Gen-Z Vibe Compatibility**, **1 km privacy-first map masking**, and a **real-time AI Voice Concierge**, Sahiroomie helps students and working professionals find verified PGs, rooms in shared flats, and compatible roommates effortlessly.
-
----
-
-## ✨ Key Features
+## 🧭 Explore this README
 
 <table>
-  <tr>
-    <td width="50%">
-      <h3>🧠 Gen-Z Vibe Compatibility & AI Coach</h3>
-      <p>Weighted compatibility scoring across <strong>sleep schedule, cleanliness, social battery, WFH noise, and house habits</strong>. Customize your profile in the interactive <em>Vibe Studio</em> and get personalized coaching via <code>/api/vibe-analysis</code>.</p>
-    </td>
-    <td width="50%">
-      <h3>🎙️ Real-Time AI Voice Concierge</h3>
-      <p>Hands-free conversational assistant for discovering rooms, comparing neighborhoods, and navigating listings with live audio streaming and instant transcripts.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3>🗺️ Interactive Street & Satellite Map</h3>
-      <p>Zoom-aware Leaflet map powered by Esri World Street & Imagery tiles across <strong>Bengaluru, Mumbai, Delhi NCR, Pune, Hyderabad, Bhopal</strong>, and All India—complete with city clustering, geolocation, dark-mode tiles, and Google Maps handoff.</p>
-    </td>
-    <td width="50%">
-      <h3>🛡️ 1 km Privacy Halo & Trust Controls</h3>
-      <p>Exact flat and PG addresses remain masked inside a <strong>1 km dashed privacy halo</strong> until a visit is scheduled. Built-in scam-keyword screening and <strong>Aadhaar (Verhoeff checksum) / PAN</strong> verification utilities keep listings authentic.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3>⚡ Smart Discovery & Urgent Stays</h3>
-      <p>One-tap quick filters (<code>85%+ Vibe Match</code>, <code>Under ₹10k</code>, <code>Women only</code>, <code>Near me</code>), deep preference modals, and a live <strong>Urgent: moving in within 6 days</strong> countdown carousel.</p>
-    </td>
-    <td width="50%">
-      <h3>🌐 Multilingual & Adaptive UI</h3>
-      <p>Full localization in <strong>English</strong>, <strong>हिन्दी (Hindi)</strong>, <strong>ಕನ್ನಡ (Kannada)</strong>, and <strong>मराठी (Marathi)</strong> with seamless Light and Dark themes.</p>
-    </td>
-  </tr>
+<tr>
+<td>🎯 <a href="#-overview">Overview</a></td>
+<td>✨ <a href="#-features">Features</a></td>
+<td>🖼️ <a href="#%EF%B8%8F-gallery">Gallery</a></td>
+</tr>
+<tr>
+<td>🏗️ <a href="#%EF%B8%8F-architecture">Architecture</a></td>
+<td>🛠️ <a href="#%EF%B8%8F-tech-stack">Tech stack</a></td>
+<td>⚡ <a href="#-quick-start">Quick start</a></td>
+</tr>
+<tr>
+<td>🔐 <a href="#-security--privacy">Security</a></td>
+<td>🧪 <a href="#-testing">Testing</a></td>
+<td>🗺️ <a href="#%EF%B8%8F-roadmap">Roadmap</a></td>
+</tr>
 </table>
 
 ---
 
-## 📸 Product Tour
+## 🎯 Overview
+
+**Sahiroomie** rethinks shared living in India. Students and working professionals can find **verified PGs, rooms in shared flats, and compatible roommates** without paying broker fees or guessing about neighbours.
+
+> **The core idea:** match people on *how they live*, not just *where they live*, and keep exact addresses private until a visit is genuinely scheduled.
+
+<div align="center">
+
+| 💸 Brokerage | 🧠 Matching | 🛡️ Privacy |
+|:---:|:---:|:---:|
+| **0%** | **Weighted vibe score** | **1 km halo until visit** |
+
+</div>
+
+---
+
+## ✨ Features
+
+Click any card to expand it.
+
+<details>
+<summary><b>🧠 Gen-Z Vibe Compatibility & AI Coach</b></summary>
+
+<br>
+
+Compatibility is scored across five weighted dimensions:
+
+- 😴 **Sleep schedule**
+- 🧹 **Cleanliness**
+- 🎉 **Social battery**
+- 💻 **WFH noise**
+- 🏡 **House habits**
+
+Customise your profile in the interactive **Vibe Studio** and get personalised coaching from `/api/vibe-analysis`.
+
+</details>
+
+<details>
+<summary><b>🎙️ Real-Time AI Voice Concierge</b></summary>
+
+<br>
+
+A hands-free assistant for finding rooms, comparing neighbourhoods, and moving through listings. Live audio streaming and instant transcripts keep the conversation flowing.
+
+</details>
+
+<details>
+<summary><b>🗺️ Interactive Street & Satellite Maps</b></summary>
+
+<br>
+
+- Zoom-aware Leaflet map with **Esri World Street & Imagery** tiles
+- City clustering across **Bengaluru, Mumbai, Delhi NCR, Pune, Hyderabad, Bhopal** and All India
+- Browser geolocation, dark-mode tiles, and a one-tap **Google Maps handoff**
+
+</details>
+
+<details>
+<summary><b>🛡️ 1 km Privacy Halo & Trust Controls</b></summary>
+
+<br>
+
+- Exact flat and PG addresses stay hidden inside a **1 km dashed privacy halo**
+- The exact location unlocks only once a visit is scheduled
+- Built-in **scam-keyword screening**
+- **Aadhaar** (Verhoeff checksum) and **PAN** verification utilities
+
+</details>
+
+<details>
+<summary><b>⚡ Smart Discovery & Urgent Stays</b></summary>
+
+<br>
+
+- One-tap quick filters: `85%+ Vibe Match` · `Under ₹10k` · `Women only` · `Near me`
+- Deep preference modals for fine-grained search
+- Live **"Moving in within 6 days"** carousel for urgent listings
+
+</details>
+
+<details>
+<summary><b>🌐 Multilingual & Adaptive UI</b></summary>
+
+<br>
+
+Full localisation in **English**, **हिन्दी**, **ಕನ್ನಡ**, and **मराठी**, with light and dark themes and a responsive mobile layout.
+
+</details>
+
+---
+
+## 🖼️ Gallery
+
+<div align="center">
+
+<a href="docs/screenshots/desktop-street-map.png">
+  <img src="docs/screenshots/desktop-street-map.png" alt="Street map with live listings" width="85%" />
+</a>
+
+</div>
 
 <details open>
-<summary><b>Click to toggle Preview Gallery</b></summary>
-<br />
+<summary><b>📸 Click to switch views</b></summary>
 
-| All-India Live City Clusters | Satellite Map View | Mobile Experience |
-| :---: | :---: | :---: |
-| <img src="docs/preview-map.png" alt="All India Live Map" width="280" /> | <img src="docs/preview-satellite.png" alt="Satellite View" width="280" /> | <img src="docs/preview-mobile.png" alt="Mobile Home View" width="280" /> |
+<br>
 
-*(Tip: Update the image paths above to match your screenshots inside `/docs` or `/public`)*
+<table>
+<tr>
+<th>🇮🇳 All-India Clusters</th>
+<th>🛰️ Satellite View</th>
+<th>📱 Mobile Home</th>
+</tr>
+<tr>
+<td><img src="docs/screenshots/desktop-all-india-map.png" alt="All India live map" /></td>
+<td><img src="docs/screenshots/desktop-satellite-map.png" alt="Satellite map view" /></td>
+<td><img src="docs/screenshots/mobile-home.png" alt="Mobile home view" width="220" /></td>
+</tr>
+</table>
+
 </details>
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+flowchart LR
+    U([👤 User Browser]) --> SPA[React + Vite SPA]
+    SPA --> MAP[🗺️ Leaflet + Esri Tiles]
+    SPA --> AUTH[(🔑 Firebase Auth)]
+    SPA --> DB[(🔥 Cloud Firestore)]
+    SPA -->|/api/*| API[Express · server.ts]
+    API --> VIBE[🧠 Vibe Analysis]
+    DB -. real-time sync .-> SPA
+```
 
 ---
 
 ## 🛠️ Tech Stack
 
 | Layer | Technologies |
-| :--- | :--- |
-| **Frontend** | React, TypeScript, Vite, Tailwind CSS |
-| **Maps & Geo** | Leaflet, Esri World Street & Imagery Tiles, Browser Geolocation |
-| **Backend & API** | Node.js, Express (`server.ts`, `/api/*`), Schema.org JSON-LD SEO |
-| **Database & Auth** | Firebase Authentication (Google & Email), Cloud Firestore (Real-Time Sync) |
-| **Testing & Quality** | `tsx --test` native test runner, ESLint |
+|---|---|
+| 🎨 **Frontend** | React · TypeScript · Vite · Tailwind CSS |
+| 🗺️ **Maps & Geo** | Leaflet · Esri World Street & Imagery · Browser Geolocation |
+| ⚙️ **Backend** | Node.js · Express (`server.ts`, `/api/*`) · Schema.org JSON-LD for SEO |
+| 🔥 **Data & Auth** | Firebase Auth (Google & Email) · Cloud Firestore (real-time) |
+| 🧪 **Quality** | `tsx --test` native runner · ESLint |
 
 ---
 
-## 🚀 Getting Started
+## ⚡ Quick Start
 
-### Prerequisites
-- **Node.js** `>= 18.x` (or **Bun**)
-- A **Firebase** project with Firestore and Authentication enabled
+### ✅ Prerequisites
 
-### 1. Clone the Repository
+- **Node.js** `>= 18` *or* **Bun**
+- A **Firebase** project with **Firestore** and **Authentication** enabled
+
+### 📦 Setup
+
+<details open>
+<summary><b>Step 1 · Clone</b></summary>
+
 ```bash
-git clone [https://github.com/code-with-rv/Sahiroomie.git](https://github.com/code-with-rv/Sahiroomie.git)
+git clone https://github.com/code-with-rv/Sahiroomie.git
 cd Sahiroomie
+```
+
+</details>
+
+<details>
+<summary><b>Step 2 · Install dependencies</b></summary>
+
+```bash
+# with Bun (recommended, bun.lock is included)
+bun install
+
+# or with npm
+npm install
+```
+
+</details>
+
+<details>
+<summary><b>Step 3 · Configure environment</b></summary>
+
+```bash
+cp .env.example .env
+cp firebase-applet-config.example.json firebase-applet-config.json
+```
+
+Fill in your Firebase web config and any API keys listed in `.env.example`.
+Never commit these files. They are already covered by `.gitignore`.
+
+</details>
+
+<details>
+<summary><b>Step 4 · Secure your database</b></summary>
+
+Publish the Firestore security rules from `firestore.rules` in your Firebase console (or with the Firebase CLI) before going live. The rules are documented in `security_spec.md`.
+
+</details>
+
+<details>
+<summary><b>Step 5 · Run it 🎉</b></summary>
+
+```bash
+bun run dev      # or: npm run dev
+```
+
+Open **http://localhost:3000** (or the port shown in your terminal).
+
+</details>
+
+> 💡 Exact script names live in `package.json`. Check there if a command above differs.
+
+---
+
+## 🔐 Security & Privacy
+
+<details>
+<summary><b>How listings and personal data are protected</b></summary>
+
+<br>
+
+| Concern | How Sahiroomie handles it |
+|---|---|
+| 📍 **Exact address** | Hidden behind a 1 km halo until a visit is scheduled |
+| 🪪 **Identity** | Aadhaar and PAN checks run client-side, with checksum validation |
+| 🚫 **Scams** | Keyword screening on listing text |
+| 🔒 **Data access** | Enforced through Firestore security rules |
+| 🔑 **Secrets** | Kept in `.env` and `firebase-applet-config.json`, never in source |
+
+Please report vulnerabilities privately through a GitHub issue marked *security*, or contact the maintainers directly. Do not post exploit details publicly.
+
+</details>
+
+---
+
+## 🧪 Testing
+
+```bash
+bun test          # or: npx tsx --test
+```
+
+The suite runs on Node's native test runner via `tsx` and currently passes **19 tests**.
+
+---
+
+## 🗺️ Roadmap
+
+- [x] Gen-Z vibe scoring and Vibe Studio
+- [x] Street and satellite maps with city clustering
+- [x] 1 km privacy halo
+- [x] Multilingual UI (EN · HI · KN · MR)
+- [x] Real-time AI voice concierge
+- [ ] Verified-owner badges and identity review queue
+- [ ] In-app visit scheduling with calendar sync
+- [ ] Push notifications for urgent listings
+- [ ] More cities and regional languages
+
+Have an idea? [Open a feature request](https://github.com/code-with-rv/Sahiroomie/issues).
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Here's the fast path:
+
+1. 🍴 **Fork** the repo
+2. 🌿 **Branch** `git checkout -b feature/amazing-idea`
+3. 💾 **Commit** `git commit -m "feat: add amazing idea"`
+4. 🚀 **Push** `git push origin feature/amazing-idea`
+5. 🔀 **Open a Pull Request**
+
+Run the linter and tests before opening a PR.
+
+---
+
+## 📄 License
+
+Released under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+
+---
+
+## 🙏 Acknowledgements
+
+- Built from the [Google AI Studio repository template](https://github.com/google-gemini/aistudio-repository-template)
+- Maps by [Esri](https://www.esri.com/) and [Leaflet](https://leafletjs.com/)
+- Backend and data by [Firebase](https://firebase.google.com/)
+
+<div align="center">
+
+---
+
+Made with ❤️ in India by **[code-with-rv](https://github.com/code-with-rv)**
+
+⭐ **If Sahiroomie helped you, give it a star!** ⭐
+
+[⬆ Back to top](#-explore-this-readme)
+
+</div>
