@@ -1,6 +1,3 @@
-<div align="center">
-
-<img src="public/logo.svg" alt="Sahiroomie logo" width="96" height="96" />
 
 # Sahiroomie 🏠✨
 
