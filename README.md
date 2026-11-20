@@ -24,35 +24,105 @@
 | :---: | :---: | :---: |
 | ![All India Live Map](docs/screenshots/desktop-all-india-map.png) | ![Satellite View](docs/screenshots/desktop-satellite-map.png) | ![Mobile Home View](docs/screenshots/mobile-home.png) |
 
-## Current Features
+<div align="center">
 
-- **Real Interactive Street & Satellite Map**: Zoomable, pannable Leaflet map powered by Esri World Street Map and World Imagery tiles (with place-name labels), plotting live listings across **Bengaluru, Mumbai, Delhi NCR, Pune, Hyderabad, Bhopal**, and **All India**.
-- **Zoom-Aware City Clustering & Map Controls**: Automatically groups multi-listing cities into compact cluster badges (`3 · ₹8.5k+`) on national zoom, expands into individual neighborhood price pills on zoom-in, and includes Street/Satellite toggle, zoom controls, browser geolocation (**Locate Me**), dark-mode tile styling, and one-tap **Open area in Google Maps** links.
-- **1 km Privacy-First Location Masking**: Keeps exact flat and PG addresses private inside an interactive 1 km dashed privacy halo across the homepage map, Listing Detail view, and Post Listing Wizard until a visit is scheduled.
-- **Real-Time AI Voice Concierge**: Hands-free voice assistant for discovering rooms, comparing areas, and navigating listings with live audio streaming and transcripts.
-- **Gen-Z Vibe Compatibility & AI Vibe Coach**: Weighted roommate compatibility scoring across sleep schedule, cleanliness, social battery, WFH noise, and house habits, paired with an editable **Vibe Studio** and on-demand coaching insights (`/api/vibe-analysis`).
-- **Firebase Auth & Real-Time Firestore Sync**: Sign in with Google or continue with email to set up a profile, publish live listings that sync in real time across sessions, persist saved shortlists, and manage host chats and alerts.
-- **8-Step Listing Wizard & Trust Controls**: Publish rooms in flats, PG beds, or full-flat roommate searches with tap-to-pin 1 km map selection, photo ordering, urgency countdowns, scam-keyword screening, and Aadhaar (Verhoeff checksum) / PAN verification utilities.
-- **Smart Discovery & Urgent Stays**: Quick filters (`85%+ Vibe Match`, `Roommate`, `PG`, `Near me`, `Under ₹10k`, `Women only`), full filter modal (budget range, radius, gender, hygiene, furnishing, diet/smoking/pets), and an **Urgent: moving in within 6 days** live countdown carousel.
-- **Multi-Language & Dark Mode UI**: Full interface support for **English**, **हिन्दी (Hindi)**, **ಕನ್ನಡ (Kannada)**, and **मराठी (Marathi)**, with light and dark themes.
-- **SEO-Ready Architecture**: Clean URL routes (`/city/:slug`, `/stays/:id`, `/find`, `/faq`), dynamic Schema.org JSON-LD (`Apartment` and `FAQPage`), `/robots.txt`, and `/sitemap.xml`.
+<!-- Replace this SVG/URL with your custom logo in public/logo.svg or public/logo.png -->
+<img src="https://raw.githubusercontent.com/code-with-rv/Sahiroomie/main/public/logo.svg" alt="Sahiroomie Logo" width="120" height="120" />
 
-## Local Development
+# Sahiroomie 🏠✨
 
+**Verified Roommate, PG & Flat Finder for India — Zero Brokerage, 100% Vibe-Matched.**
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-sahiroomie.vercel.app-10b981?style=for-the-badge&logo=vercel&logoColor=white)](https://sahiroomie.vercel.app)
+[![TypeScript](https://img.shields.io/badge/TypeScript-98.3%25-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![React](https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Firebase](https://img.shields.io/badge/Firebase-Firestore_%26_Auth-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-Styled-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+
+[Explore Live App](https://sahiroomie.vercel.app) • [Report Bug](https://github.com/code-with-rv/Sahiroomie/issues) • [Request Feature](https://github.com/code-with-rv/Sahiroomie/issues)
+
+</div>
+
+---
+
+## 📖 Overview
+
+**Sahiroomie** reimagines shared living across India by eliminating broker fees and guesswork. Combining **AI-powered Gen-Z Vibe Compatibility**, **1 km privacy-first map masking**, and a **real-time AI Voice Concierge**, Sahiroomie helps students and working professionals find verified PGs, rooms in shared flats, and compatible roommates effortlessly.
+
+---
+
+## ✨ Key Features
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🧠 Gen-Z Vibe Compatibility & AI Coach</h3>
+      <p>Weighted compatibility scoring across <strong>sleep schedule, cleanliness, social battery, WFH noise, and house habits</strong>. Customize your profile in the interactive <em>Vibe Studio</em> and get personalized coaching via <code>/api/vibe-analysis</code>.</p>
+    </td>
+    <td width="50%">
+      <h3>🎙️ Real-Time AI Voice Concierge</h3>
+      <p>Hands-free conversational assistant for discovering rooms, comparing neighborhoods, and navigating listings with live audio streaming and instant transcripts.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🗺️ Interactive Street & Satellite Map</h3>
+      <p>Zoom-aware Leaflet map powered by Esri World Street & Imagery tiles across <strong>Bengaluru, Mumbai, Delhi NCR, Pune, Hyderabad, Bhopal</strong>, and All India—complete with city clustering, geolocation, dark-mode tiles, and Google Maps handoff.</p>
+    </td>
+    <td width="50%">
+      <h3>🛡️ 1 km Privacy Halo & Trust Controls</h3>
+      <p>Exact flat and PG addresses remain masked inside a <strong>1 km dashed privacy halo</strong> until a visit is scheduled. Built-in scam-keyword screening and <strong>Aadhaar (Verhoeff checksum) / PAN</strong> verification utilities keep listings authentic.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>⚡ Smart Discovery & Urgent Stays</h3>
+      <p>One-tap quick filters (<code>85%+ Vibe Match</code>, <code>Under ₹10k</code>, <code>Women only</code>, <code>Near me</code>), deep preference modals, and a live <strong>Urgent: moving in within 6 days</strong> countdown carousel.</p>
+    </td>
+    <td width="50%">
+      <h3>🌐 Multilingual & Adaptive UI</h3>
+      <p>Full localization in <strong>English</strong>, <strong>हिन्दी (Hindi)</strong>, <strong>ಕನ್ನಡ (Kannada)</strong>, and <strong>मराठी (Marathi)</strong> with seamless Light and Dark themes.</p>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 📸 Product Tour
+
+<details open>
+<summary><b>Click to toggle Preview Gallery</b></summary>
+<br />
+
+| All-India Live City Clusters | Satellite Map View | Mobile Experience |
+| :---: | :---: | :---: |
+| <img src="docs/preview-map.png" alt="All India Live Map" width="280" /> | <img src="docs/preview-satellite.png" alt="Satellite View" width="280" /> | <img src="docs/preview-mobile.png" alt="Mobile Home View" width="280" /> |
+
+*(Tip: Update the image paths above to match your screenshots inside `/docs` or `/public`)*
+</details>
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React, TypeScript, Vite, Tailwind CSS |
+| **Maps & Geo** | Leaflet, Esri World Street & Imagery Tiles, Browser Geolocation |
+| **Backend & API** | Node.js, Express (`server.ts`, `/api/*`), Schema.org JSON-LD SEO |
+| **Database & Auth** | Firebase Authentication (Google & Email), Cloud Firestore (Real-Time Sync) |
+| **Testing & Quality** | `tsx --test` native test runner, ESLint |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Node.js** `>= 18.x` (or **Bun**)
+- A **Firebase** project with Firestore and Authentication enabled
+
+### 1. Clone the Repository
 ```bash
-cp .env.example .env
-# Optional: set server-side FIREBASE_* variables in .env
-# (or copy firebase-applet-config.example.json to firebase-applet-config.json locally)
-npm install
-npm run dev
-```
-
-> **Security Note**: `firebase-applet-config.json` and `.env` are gitignored, and Firebase client config is loaded dynamically from the server (`/api/firebase-config`) so no API key is baked into static frontend bundles or committed to GitHub.
-
-## Checks & Unit Tests
-
-```bash
-npm run lint
-npm run build
-npx tsx --test src/utils/compatibility.test.ts src/utils/seo.test.ts src/utils/pcmAudio.test.ts src/utils/mapClustering.test.ts
-```
+git clone [https://github.com/code-with-rv/Sahiroomie.git](https://github.com/code-with-rv/Sahiroomie.git)
+cd Sahiroomie
