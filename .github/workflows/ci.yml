@@ -25,7 +25,7 @@ jobs:
         run: npm run lint
 
       - name: Run unit tests
-        run: npx tsx --test src/utils/compatibility.test.ts src/utils/seo.test.ts src/utils/pcmAudio.test.ts src/utils/mapClustering.test.ts
+        run: npx tsx --test src/utils/compatibility.test.ts src/utils/seo.test.ts src/utils/pcmAudio.test.ts src/utils/mapClustering.test.ts src/utils/serverSecurity.test.ts
 
       - name: Build production bundle
         run: npm run build

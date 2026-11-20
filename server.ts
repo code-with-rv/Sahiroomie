@@ -4,7 +4,11 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { attachLiveVoiceBridge } from './src/liveVoiceBridge.js';
-import { createSahiroomieApp, injectRouteSeoIntoHtml } from './src/serverApp.js';
+import {
+  createSahiroomieApp,
+  injectRouteSeoIntoHtml,
+  safeErrorHandler,
+} from './src/serverApp.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -59,12 +63,19 @@ async function startServer() {
   } else {
     const distDir = path.resolve(__dirname, 'dist');
     app.use(express.static(distDir, { index: false }));
-    app.get('*', (req, res) => {
-      const rawHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
-      const seoHtml = injectRouteSeoIntoHtml(rawHtml, req);
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(seoHtml);
+    app.get('*', (req, res, next) => {
+      try {
+        const rawHtml = fs.readFileSync(path.join(distDir, 'index.html'), 'utf-8');
+        const seoHtml = injectRouteSeoIntoHtml(rawHtml, req);
+        res.status(200).set({ 'Content-Type': 'text/html' }).end(seoHtml);
+      } catch (err) {
+        next(err);
+      }
     });
   }
+
+  // Global error handler: never expose stack traces or filesystem paths to clients
+  app.use(safeErrorHandler);
 
   server.listen(PORT, '0.0.0.0', () => {
     console.log(`Sahiroomie server listening on http://localhost:${PORT}`);
